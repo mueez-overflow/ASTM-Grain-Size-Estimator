@@ -1,5 +1,3 @@
-# 📄 Paper Repository
-
 ## Bridging Foundation Models and ASTM Metallurgical Standards  
 ### for Automated Grain Size Estimation from Microscopy Images
 
