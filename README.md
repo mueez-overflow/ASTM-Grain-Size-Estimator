@@ -43,7 +43,7 @@ An optimal test circle is dynamically inscribed over the prediction mask. Grains
 Standard foundation models are not designed to output metallurgical metrics. Our pipeline bridges this gap by algorithmically applying the standard Jeffries planimetric method directly to the generated instance masks.
 
 <p align="left">
-  <img src="figures/jeffries_method.png" alt="Jeffries Planimetric Method" width="50%">
+  <img src="figures/jeffries_method.png" alt="Jeffries Planimetric Method" width="30%">
 </p>
 
 The algorithm dynamically inscribes an optimal test circle over the prediction mask. To calculate the true grain density ($N_A$) in accordance with ASTM E112-25, the system categorizes the grains:
