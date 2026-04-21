@@ -25,7 +25,7 @@ This repository provides a fully automated pipeline for dense instance segmentat
 <!-- ![Proposed automated metallographic analysis workflow](figures/flowchart.png) -->
 
 <p align="left">
-  <img src="figures/flowchart.png" alt="Proposed automated metallographic analysis workflow" width="75%">
+  <img src="figures/flowchart.png" alt="Proposed automated metallographic analysis workflow" width="100%">
 </p>
 
 
@@ -43,7 +43,7 @@ An optimal test circle is dynamically inscribed over the prediction mask. Grains
 Standard foundation models are not designed to output metallurgical metrics. Our pipeline bridges this gap by algorithmically applying the standard Jeffries planimetric method directly to the generated instance masks.
 
 <p align="left">
-  <img src="figures/jeffries_method.png" alt="Jeffries Planimetric Method" width="22%">
+  <img src="figures/jeffries_method.png" alt="Jeffries Planimetric Method" width="50%">
 </p>
 
 The algorithm dynamically inscribes an optimal test circle over the prediction mask. To calculate the true grain density ($N_A$) in accordance with ASTM E112-25, the system categorizes the grains:
@@ -156,7 +156,7 @@ As shown below, our fine-tuned approach prevents the merging of distinct grains 
 <!-- ![Qualitative Comparison](figures/segmentation_comparison.png) -->
 
 <p align="left">
-  <img src="figures/segmentation_comparison.png" alt="Qualitative Comparison" width="75%">
+  <img src="figures/segmentation_comparison.png" alt="Qualitative Comparison" width="100%">
 </p>
 
 
