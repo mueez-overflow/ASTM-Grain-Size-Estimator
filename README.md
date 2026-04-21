@@ -167,8 +167,8 @@ For all primary benchmarking evaluations, the automated pipeline was configured 
 | :--- | :--- | :--- |
 | U-Net (75% Train) | 26.05% | 6.78% |
 | MatSAM (Zero-shot) | 63.81% | 10.61% |
-| **Cellpose-SAM (Zero-shot)** | 38.11% | 3.92% |
-| **Cellpose-SAM (5% Train - Ours)** | **8.20%** | **1.88%** |
+| Cellpose-SAM (Zero-shot) | 38.11% | 3.92% |
+| **Cellpose-SAM (5% Train)** | **8.20%** | **1.88%** |
 
 Robustness testing across varying target grain counts also empirically validates the ASTM 50-grain sampling minimum. Furthermore, the pipeline is fully autonomous and does not require any ground-truth geometry to draw the evaluation circle during deployment.
 
