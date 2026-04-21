@@ -21,7 +21,51 @@ Official repository for the paper: **"Bridging Foundation Models and ASTM Metall
 
 This repository provides a fully automated pipeline for dense instance segmentation and grain size estimation. It adapts **Cellpose-SAM** to microstructures and integrates its topology-aware gradient tracking with an **ASTM E112 Jeffries planimetric module** to directly predict the ASTM E112-25 Grain Size Number ($G$).
 
-![Proposed automated metallographic analysis workflow](figures/flowchart.png)
+
+<!-- ![Proposed automated metallographic analysis workflow](figures/flowchart.png) -->
+
+<p align="left">
+  <img src="figures/flowchart.png" alt="Proposed automated metallographic analysis workflow" width="75%">
+</p>
+
+
+
+<!-- ## 🔬 How It Works: The Jeffries Planimetric Procedure
+
+Standard foundation models are not designed to output metallurgical metrics. Our pipeline bridges this gap by algorithmically applying the Jeffries Planimetric Method.
+
+![Jeffries Planimetric Method](figures/jeffries_inscribed_circle.png)
+
+An optimal test circle is dynamically inscribed over the prediction mask. Grains completely inside the circle (green) are counted as whole units, while grains intersecting the boundary (yellow) are counted as half units. Our algorithm dynamically calculates the required multiplier based on the pixel-to-physical spatial calibration to compute the true grain density and standard ASTM Grain Size Number. -->
+
+## 🔬 How It Works: The Automated Jeffries Planimetric Procedure
+
+Standard foundation models are not designed to output metallurgical metrics. Our pipeline bridges this gap by algorithmically applying the standard Jeffries planimetric method directly to the generated instance masks.
+
+<p align="left">
+  <img src="figures/jeffries_method.png" alt="Jeffries Planimetric Method" width="22%">
+</p>
+
+The algorithm dynamically inscribes an optimal test circle over the prediction mask. To calculate the true grain density ($N_A$) in accordance with ASTM E112-25, the system categorizes the grains:
+
+1. **Internal Grains ($N_{Inside}$):** Grains lying completely inside the test circle are counted as 1 whole unit (shown in green).
+2. **Intercepted Grains ($N_{Intercepted}$):** Grains bisected by the circular boundary are counted as 0.5 units (shown in yellow).
+
+### The Dynamic Multiplier
+
+Under standard ASTM E112-25 procedures, the Jeffries multiplier is defined as $f = M^2 / A$, where $M$ is the magnification and $A$ is the test area in mm². 
+
+Because our automated pipeline computes the exact physical area directly from the microstructural pixel scale, the magnification factor is effectively $M=1$. To achieve this, the pipeline relies on a **user-defined spatial calibration factor** (e.g., 2.26 px/μm as determined for our primary dataset) to translate pixel measurements into true physical dimensions. Therefore, the system computes a **dynamic multiplier** that perfectly adapts to the physical area of the specific test circle drawn for each individual image:
+
+$$f_{dynamic} = \frac{1}{A_{circle}}$$
+
+This allows the system to calculate the equivalent whole grains per unit area ($N_A$) with exact spatial calibration regardless of the input image resolution:
+
+$$N_A = f_{dynamic} \left( N_{Inside} + \frac{N_{Intercepted}}{2} \right)$$
+
+Finally, this density directly yields the dimensionless ASTM Grain Size Number ($G$) via the standard logarithmic scaling:
+
+$$G = 3.321928 \log_{10}(N_A) - 2.954$$
 
 ---
 
@@ -96,10 +140,37 @@ python 4_evaluate_jeffries.py \
 ```
 
 ---
-
+<!-- 
 ## 📊 Results Summary
 
-Our evaluations demonstrate that utilizing just **5% of the training data (2 samples)**, the fine-tuned Cellpose-SAM pipeline successfully maintains topological separation and predicts the ASTM grain size number ($G$) with a Mean Absolute Percentage Error (MAPE) as low as **1.50%**. Robustness testing across varying target grain counts also empirically validates the ASTM 50-grain sampling minimum.
+Our evaluations demonstrate that utilizing just **5% of the training data (2 samples)**, the fine-tuned Cellpose-SAM pipeline successfully maintains topological separation and predicts the ASTM grain size number ($G$) with a Mean Absolute Percentage Error (MAPE) as low as **1.50%**. Robustness testing across varying target grain counts also empirically validates the ASTM 50-grain sampling minimum. -->
+
+
+## 📊 Results and Benchmarks
+
+Our evaluations demonstrate that utilizing just **5% of the training data (2 samples)**, the fine-tuned Cellpose-SAM pipeline successfully maintains topological separation. 
+
+### Qualitative Comparison
+As shown below, our fine-tuned approach prevents the merging of distinct grains seen in standard U-Net models and entirely avoids the severe over-segmentation caused by MatSAM's adaptive prompting on porous microstructures.
+
+<!-- ![Qualitative Comparison](figures/segmentation_comparison.png) -->
+
+<p align="left">
+  <img src="figures/segmentation_comparison.png" alt="Qualitative Comparison" width="75%">
+</p>
+
+
+### Quantitative Performance
+For all primary benchmarking evaluations, the automated pipeline was configured to dynamically inscribe a test circle enclosing a target of 60 internal grains (providing a safe 10-grain buffer above the ASTM E112-25 minimum). When evaluated against this standard, the fine-tuned Cellpose-SAM model predicts the final ASTM Grain Size Number (G) with industrial-grade accuracy.
+
+| Model / Split | Grain Density MAPE | ASTM Grain Size (G) MAPE |
+| :--- | :--- | :--- |
+| U-Net (75% Train) | 26.05% | 6.78% |
+| MatSAM (Zero-shot) | 63.81% | 10.61% |
+| **Cellpose-SAM (Zero-shot)** | 38.11% | 3.92% |
+| **Cellpose-SAM (5% Train - Ours)** | **8.20%** | **1.88%** |
+
+Robustness testing across varying target grain counts also empirically validates the ASTM 50-grain sampling minimum. Furthermore, the pipeline is fully autonomous and does not require any ground-truth geometry to draw the evaluation circle during deployment.
 
 <!-- ---
 
