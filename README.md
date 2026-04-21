@@ -14,12 +14,14 @@ The code for this project is currently being finalized and will be released soon
 
 # ASTM Grain Size Estimator
 
-[![Conference](https://img.shields.io/badge/CVPR_2026-CVMI_Workshop-blue)](https://cvpr.thecvf.com/)
+[![Conference](https://img.shields.io/badge/CVPR_2026-CVMI_Workshop-blue)](https://cvmi-workshop.github.io/index.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Official repository for the paper: **"Bridging Foundation Models and ASTM Metallurgical Standards for Automated Grain Size Estimation from Microscopy Images"** accepted at the CVMI Workshop, CVPR 2026.
+Official repository for the paper: **"Bridging Foundation Models and ASTM Metallurgical Standards for Automated Grain Size Estimation from Microscopy Images"** accepted at the 11th IEEE Workshop on Computer Vision for Multimodal Microscopy Image Analysis (CVMI), CVPR Workshops 2026.
 
 This repository provides a fully automated pipeline for dense instance segmentation and grain size estimation. It adapts **Cellpose-SAM** to microstructures and integrates its topology-aware gradient tracking with an **ASTM E112 Jeffries planimetric module** to directly predict the ASTM E112-25 Grain Size Number ($G$).
+
+![Proposed automated metallographic analysis workflow](figures/flowchart.png)
 
 ---
 
