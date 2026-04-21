@@ -24,7 +24,7 @@ This repository provides a fully automated pipeline for dense instance segmentat
 
 <!-- ![Proposed automated metallographic analysis workflow](figures/flowchart.png) -->
 
-<p align="left">
+<p align="center">
   <img src="figures/flowchart.png" alt="Proposed automated metallographic analysis workflow" width="100%">
 </p>
 
