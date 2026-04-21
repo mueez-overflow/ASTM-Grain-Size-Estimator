@@ -18,8 +18,10 @@ The code for this project is currently being finalized and will be released soon
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Official repository for the paper: **"Bridging Foundation Models and ASTM Metallurgical Standards for Automated Grain Size Estimation from Microscopy Images"** accepted at the 11th IEEE Workshop on Computer Vision for Multimodal Microscopy Image Analysis (CVMI), CVPR Workshops 2026.
+<!-- 
+This repository provides a fully automated pipeline for dense instance segmentation and grain size estimation. It adapts **Cellpose-SAM** to microstructures and integrates its topology-aware gradient tracking with an **ASTM E112 Jeffries planimetric module** to directly predict the ASTM E112-25 Grain Size Number ($G$). -->
 
-This repository provides a fully automated pipeline for dense instance segmentation and grain size estimation. It adapts **Cellpose-SAM** to microstructures and integrates its topology-aware gradient tracking with an **ASTM E112 Jeffries planimetric module** to directly predict the ASTM E112-25 Grain Size Number ($G$).
+This repository provides a fully automated pipeline for dense instance segmentation and grain size estimation. It adapts **Cellpose-SAM** to challenging, porous microstructures (such as additively manufactured ExOne Stainless Steel 316L) and integrates its topology-aware gradient tracking with an **ASTM E112 Jeffries planimetric module** to directly predict the ASTM E112-25 Grain Size Number ($G$).
 
 
 <!-- ![Proposed automated metallographic analysis workflow](figures/flowchart.png) -->
@@ -127,9 +129,13 @@ python 3_inference.py \
 ### Step 4: ASTM Jeffries Planimetric Evaluation
 Executes the automated Jeffries method to directly calculate the ASTM E112-25 Grain Size Number ($G$). It dynamically calculates the Jeffries multiplier ($f$) based on the physical area of the inscribed test circle.
 
-This script supports two modes:
+<!-- This script supports two modes:
 * **`superimposed`**: Uses the Ground Truth (GT) mask to determine the optimal circle and copies it to the prediction mask (for strict head-to-head benchmarking).
-* **`independent`**: Calculates the optimal circle for GT and Prediction autonomously without any shared geometric information (demonstrating the fully autonomous deployment capability).
+* **`independent`**: Calculates the optimal circle for GT and Prediction autonomously without any shared geometric information (demonstrating the fully autonomous deployment capability). -->
+
+This script supports two modes:
+* **`superimposed`**: Uses the Ground Truth (GT) mask to determine the optimal circle and copies it to the prediction mask (referred to as the **"GT-Derived"** configuration in the paper, used for strict head-to-head benchmarking).
+* **`independent`**: Calculates the optimal circle for GT and Prediction autonomously without any shared geometric information (referred to as the **"GT-Free"** configuration in the paper, demonstrating the fully autonomous deployment capability).
 
 ```bash
 python 4_evaluate_jeffries.py \
@@ -153,7 +159,6 @@ Our evaluations demonstrate that utilizing just **5% of the training data (2 sam
 ### Qualitative Comparison
 As shown below, our fine-tuned approach prevents the merging of distinct grains seen in standard U-Net models and entirely avoids the severe over-segmentation caused by MatSAM's adaptive prompting on porous microstructures.
 
-<!-- ![Qualitative Comparison](figures/segmentation_comparison.png) -->
 
 <p align="left">
   <img src="figures/segmentation_comparison.png" alt="Qualitative Comparison" width="100%">
