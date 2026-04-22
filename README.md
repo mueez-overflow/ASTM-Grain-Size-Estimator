@@ -18,8 +18,7 @@ The code for this project is currently being finalized and will be released soon
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Official repository for the paper: **"Bridging Foundation Models and ASTM Metallurgical Standards for Automated Grain Size Estimation from Microscopy Images"** accepted at the 11th IEEE Workshop on Computer Vision for Multimodal Microscopy Image Analysis (CVMI), CVPR Workshops 2026.
-<!-- 
-This repository provides a fully automated pipeline for dense instance segmentation and grain size estimation. It adapts **Cellpose-SAM** to microstructures and integrates its topology-aware gradient tracking with an **ASTM E112 Jeffries planimetric module** to directly predict the ASTM E112-25 Grain Size Number ($G$). -->
+
 
 This repository provides a fully automated pipeline for dense instance segmentation and grain size estimation. It adapts **Cellpose-SAM** to challenging, porous microstructures (such as additively manufactured ExOne Stainless Steel 316L) and integrates its topology-aware gradient tracking with an **ASTM E112 Jeffries planimetric module** to directly predict the ASTM E112-25 Grain Size Number ($G$).
 
@@ -31,14 +30,6 @@ This repository provides a fully automated pipeline for dense instance segmentat
 </p>
 
 
-
-<!-- ## 🔬 How It Works: The Jeffries Planimetric Procedure
-
-Standard foundation models are not designed to output metallurgical metrics. Our pipeline bridges this gap by algorithmically applying the Jeffries Planimetric Method.
-
-![Jeffries Planimetric Method](figures/jeffries_inscribed_circle.png)
-
-An optimal test circle is dynamically inscribed over the prediction mask. Grains completely inside the circle (green) are counted as whole units, while grains intersecting the boundary (yellow) are counted as half units. Our algorithm dynamically calculates the required multiplier based on the pixel-to-physical spatial calibration to compute the true grain density and standard ASTM Grain Size Number. -->
 
 ## 🔬 How It Works: The Automated Jeffries Planimetric Procedure
 
@@ -177,17 +168,17 @@ For all primary benchmarking evaluations, the automated pipeline was configured 
 
 Robustness testing across varying target grain counts also empirically validates the ASTM 50-grain sampling minimum. Furthermore, the pipeline is fully autonomous and does not require any ground-truth geometry to draw the evaluation circle during deployment.
 
-<!-- ---
+---
 
 ## 📝 Citation
 
 If you find this code or our paper useful in your research, please consider citing:
 
 ```bibtex
-@inproceedings{mueez2026bridging,
-  title={Bridging Foundation Models and ASTM Metallurgical Standards for Automated Grain Size Estimation from Microscopy Images},
-  author={Mueez, Abdul and Vyas, Shruti},
-  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference Workshops (CVMI)},
-  year={2026}
+@article{mueez2026bridging,
+  title   = {Bridging Foundation Models and ASTM Metallurgical Standards for Automated Grain Size Estimation from Microscopy Images},
+  author  = {Mueez, Abdul and Vyas, Shruti},
+  journal = {arXiv preprint arXiv:2604.18957},
+  year    = {2026},
 }
-``` -->
+```
