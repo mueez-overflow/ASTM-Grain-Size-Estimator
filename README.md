@@ -4,7 +4,7 @@
 [![Paper](https://img.shields.io/badge/arXiv-2604.18957-B31B1B.svg)](https://arxiv.org/abs/2604.18957)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Official repository for the paper: **"Bridging Foundation Models and ASTM Metallurgical Standards for Automated Grain Size Estimation from Microscopy Images"** accepted at the 11th IEEE Workshop on Computer Vision for Multimodal Microscopy Image Analysis (CVMI), CVPR Workshops 2026.
+Official repository for the paper: **"Bridging Foundation Models and ASTM Metallurgical Standards for Automated Grain Size Estimation from Microscopy Images"** accepted at the 11th IEEE Workshop on Computer Vision for Multimodal Microscopy Image Analysis (CVMI), CVPR 2026.
 
 
 This repository provides a fully automated pipeline for dense instance segmentation and grain size estimation. It adapts **Cellpose-SAM** to challenging, porous microstructures (such as additively manufactured ExOne Stainless Steel 316L) and integrates its topology-aware gradient tracking with an **ASTM E112 Jeffries planimetric module** to directly predict the ASTM E112-25 Grain Size Number ($G$).
