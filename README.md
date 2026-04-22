@@ -1,20 +1,7 @@
-<!-- ## Bridging Foundation Models and ASTM Metallurgical Standards for Automated Grain Size Estimation from Microscopy Images
-
-📍 *Accepted at:*  
-**Computer Vision for Multimodal Microscopy Image Analysis Workshop (CVPR 2026)**
-
----
-
-## 🚧 Code Status
-
-The code for this project is currently being finalized and will be released soon.
-
-🔔 Please check back for updates. -->
-
-
 # ASTM Grain Size Estimator
 
 [![Conference](https://img.shields.io/badge/CVPR_2026-CVMI_Workshop-blue)](https://cvmi-workshop.github.io/index.html)
+[![Paper](https://img.shields.io/badge/arXiv-2604.18957-B31B1B.svg)](https://arxiv.org/abs/2604.18957)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Official repository for the paper: **"Bridging Foundation Models and ASTM Metallurgical Standards for Automated Grain Size Estimation from Microscopy Images"** accepted at the 11th IEEE Workshop on Computer Vision for Multimodal Microscopy Image Analysis (CVMI), CVPR Workshops 2026.
