@@ -146,11 +146,11 @@ As shown below, our fine-tuned approach prevents the merging of distinct grains 
 ### Quantitative Performance
 For all primary benchmarking evaluations, the automated pipeline was configured to dynamically inscribe a test circle enclosing a target of 60 internal grains (providing a safe 10-grain buffer above the ASTM E112-25 minimum). When evaluated against this standard, the fine-tuned Cellpose-SAM model predicts the final ASTM Grain Size Number (G) with industrial-grade accuracy.
 
-| Model / Split | Grain Density MAPE | ASTM Grain Size (G) MAPE |
+| Model / Split | Grain Density N<sub>A</sub> MAPE | ASTM Grain Size (G) MAPE |
 | :--- | :--- | :--- |
 | U-Net (75% Train) | 26.05% | 6.78% |
 | MatSAM (Zero-shot) | 63.81% | 10.61% |
-| Cellpose-SAM (Zero-shot) | 38.11% | 3.92% |
+| Cellpose-SAM (Zero-shot) | 38.11% | 16.70% |
 | **Cellpose-SAM (5% Train)** | **8.20%** | **1.88%** |
 
 Robustness testing across varying target grain counts also empirically validates the ASTM 50-grain sampling minimum. Furthermore, the pipeline is fully autonomous and does not require any ground-truth geometry to draw the evaluation circle during deployment.
